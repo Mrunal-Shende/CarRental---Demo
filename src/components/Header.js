@@ -1,104 +1,96 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import Logo from "../assets/LOGO.jpg";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react'; // Mobile menu icons
+import logo from '../assets/LOGO.jpg'; 
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu state
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Luxury Car", path: "/luxury-car" },
-    { name: "Team", path: "/team" },
-    { name: "Clients", path: "/clients" },
-    { name: "Branches", path: "/branches" },
+    { name: 'HOME', path: '/' },
+    { name: 'ABOUT US', path: '/about' },
+    { name: 'SERVICES', path: '/services' },
+    { name: 'LUXURY CAR', path: '/luxury-car' },
+    { name: 'CLIENTS', path: '/clients' },
+    { name: 'TEAM', path: '/team' },
+    { name: 'BRANCHES', path: '/branches' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-0">
-      <div className="w-full px-4 md:px-12">
-        <div className="flex justify-between items-center h-14">
+    <nav className="fixed top-0 left-0 right-0 z-[1000] px-4 md:px-8">
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-b-3xl border-x border-b border-slate-100 px-6 py-4 flex items-center justify-between relative">
+        
+        {/* 1. Logo Section */}
+        <Link to="/" className="flex items-center group z-[1001]">
+          <img 
+            src={logo} 
+            alt="ETC Logo" 
+            className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+          />
+        </Link>
 
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
-              <div className="w-24 h-12 flex items-center justify-start">
-                <img
-                  src={Logo}
-                  alt="ETC Logo"
-                  className="h-full w-auto object-contain scale-110"
-                />
-              </div>
-            </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-8">
-            <nav className="flex items-center space-x-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-800 hover:text-blue-600 transition-all"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Contact Button */}
-            <Link
-              to="/contact"
-              className="px-6 py-2 rounded text-[11px] font-black uppercase tracking-widest bg-blue-600 text-white hover:bg-blue-700 transition-all"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            className="xl:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-slate-900" />
-            ) : (
-              <Menu className="w-6 h-6 text-slate-900" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 bg-slate-900 transition-all duration-300 ${
-          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
+        {/* 2. Desktop Navigation (Hidden on Mobile) */}
+        <div className="hidden lg:flex gap-8 items-center ml-auto">
           {navLinks.map((link) => (
-            <Link
+            <Link 
               key={link.name}
-              to={link.path}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-xl font-bold text-white hover:text-blue-500 uppercase tracking-widest"
+              to={link.path} 
+              className={`text-[14px] font-black tracking-tight transition-all hover:text-[#1C4D8D] ${
+                location.pathname === link.path ? 'text-[#1C4D8D]' : 'text-black'
+              }`}
             >
               {link.name}
             </Link>
           ))}
+          
+          {/* Contact Button for Desktop */}
+          <Link 
+            to="/contact" 
+            className="bg-[#1C4D8D] text-white ml-4 px-8 py-3 rounded-2xl font-black text-[12px] tracking-widest hover:bg-black transition-all shadow-md uppercase"
+          >
+            Contact Us
+          </Link>
+        </div>
 
-          <Link
-            to="/contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="bg-blue-600 text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest"
+        {/* 3. Mobile Menu Toggle Button (3 Lines) */}
+        <button 
+          className="lg:hidden p-2 text-[#1C4D8D] z-[1001]"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={32} /> : <Menu size={32} />}
+        </button>
+
+        {/* 4. Mobile Menu Overlay (Hidden on Desktop) */}
+        <div className={`
+          lg:hidden fixed inset-0 bg-white z-[1000] transition-all duration-500 ease-in-out flex flex-col items-end px-10 pt-32 gap-6
+          ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}
+        `}>
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name}
+              to={link.path} 
+              onClick={() => setIsOpen(false)}
+              className={`text-2xl font-black tracking-tighter ${
+                location.pathname === link.path ? 'text-[#1C4D8D]' : 'text-slate-900'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+          
+          {/* Merged Contact Us Button in Mobile Menu */}
+          <Link 
+            to="/contact" 
+            onClick={() => setIsOpen(false)}
+            className="mt-4 bg-[#1C4D8D] text-white w-full py-5 rounded-2xl text-center font-black text-lg tracking-[0.2em] uppercase shadow-xl"
           >
             Contact Us
           </Link>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
