@@ -10,7 +10,10 @@ import Team from './components/Team';
 import Clients from './components/Clients';
 import Branches from './components/Branches';
 import ContactUs from './components/ContactUs';
-import InquiryForm from './components/InquiryForm'; // 1. Check karein spelling sahi hai (InquiryForm)
+import InquiryForm from './components/InquiryForm';
+
+// FloatingControls import (Home folder se)
+import FloatingControls from './components/home/FloatingControls';
 
 // Page change hone par scroll top par le jane ke liye
 const ScrollToTop = () => {
@@ -22,13 +25,18 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  // Aapka common contact data
+  const contactInfo = {
+    phoneNumber: "8805547785",
+    whatsappNumber: "8805547785"
+  };
+
   return (
     <Router>
       <ScrollToTop />
       <Header />
       
-      {/* 2. 'pt-0' kiya hai taaki Home aur About page top se touch hon. 
-          Padding sirf un pages par aayegi jahan zarurat hai (CSS handle karega) */}
+      {/* Main Content Area */}
       <div className="min-h-screen pt-0"> 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,11 +47,15 @@ function App() {
           <Route path="/clients" element={<Clients />} />
           <Route path="/branches" element={<Branches />} />
           <Route path="/contact" element={<ContactUs />} />
-          
-          {/* 3. Redirection Fix: Ye line Inquiry form ko connect karegi */}
           <Route path="/inquiry" element={<InquiryForm />} /> 
         </Routes>
       </div>
+
+      {/* --- Floating Controls (Inquiry, Call, WhatsApp) --- */}
+      <FloatingControls 
+        phoneNumber={contactInfo.phoneNumber} 
+        whatsappNumber={contactInfo.whatsappNumber} 
+      />
       
       <Footer />
     </Router>

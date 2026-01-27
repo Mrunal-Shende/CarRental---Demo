@@ -1,99 +1,127 @@
 import React from 'react';
-import { ShieldCheck, Globe, Clock, Smartphone, Building2, Award, FileText, CheckCircle } from 'lucide-react';
-import bgImage from '../assets/About.jpeg'; 
+import { Globe, Smartphone, ShieldCheck, Phone, LayoutGrid, Car, Shield } from 'lucide-react';
+import bgImage from '../assets/About.jpeg';
+import MyImage1 from '../assets/tariff.jpeg'; 
+import MyImage2 from '../assets/whychooseus.jpeg';
+
+import iatoLogo from '../assets/Certifications/1.jpg';
+import ittaLogo from '../assets/Certifications/2.jpg';
+import skalLogo from '../assets/Certifications/3.png';
+import ccAvenueLogo from '../assets/Certifications/cc.jpg';
 
 const About = () => {
-  const stats = [
-    { label: "Years of Experience", value: "30+", icon: <Clock size={20} /> },
-    { label: "Owned Fleet", value: "50+", icon: <Building2 size={20} /> },
-    { label: "Major Cities", value: "PAN India", icon: <Globe size={20} /> },
-  ];
-
   const objectives = [
-    {
-      title: "PAN India Network",
-      desc: "Branch operations in Chennai, Bangalore, Hyderabad, New Delhi, Bhopal, and Pune. Expanding to Tier 2 & 3 cities.",
-      icon: <Globe size={24} />
+    { 
+      icon: <Globe size={24} />, 
+      title: "PAN India Coverage", 
+      desc: "ETC offers PAN India services with branch offices in Chennai, Bangalore, Hyderabad, Ahmedabad, New Delhi, Bhopal, and Pune. We also operate in major cities like Mumbai, Kolkata, Surat, and throughout India." 
     },
-    {
-      title: "In-House Technology",
-      desc: "New age mobile tool app engineered for cost-effective, transparent, and reliable travel management.",
-      icon: <Smartphone size={24} />
+    { 
+      icon: <LayoutGrid size={24} />, 
+      title: "Tier 2 & 3 Expansion", 
+      desc: "Looking at the growing demand in tier 2 and tier 3 cities, we have effectively expanded our services for commercial and ground transportation needs." 
     },
-    {
-      title: "Young Fleet Policy",
-      desc: "We maintain our vehicles strictly, ensuring no car in our fleet exceeds 30 months of age.",
-      icon: <ShieldCheck size={24} />
+    { 
+      icon: <Car size={24} />, 
+      title: "Technology Driven", 
+      desc: "ETC is equipped with in-house technology and a new-age mobile tool app to cater to corporate employees and travel managers. Our technology delivers cost-effective, transparent, and reliable travel experiences." 
     },
-    {
-      title: "24/7 Dedicated Support",
-      desc: "Dedicated corporate desk available round the clock for bookings and emergency assistance.",
-      icon: <Clock size={24} />
-    }
   ];
 
-  const accreditations = [
-    { title: "ISO 9001:2015", subtitle: "QUALITY MANAGEMENT", desc: "International standards for service quality and safety.", icon: <Award size={24} /> },
-    { title: "IATA Accredited", subtitle: "TRAVEL EXCELLENCE", desc: "Recognized member of global travel and transport standards.", icon: <CheckCircle size={24} /> },
-    { title: "GST Compliant", subtitle: "TAXATION & LEGAL", desc: "Fully registered and compliant for corporate tax processing.", icon: <FileText size={24} /> },
-    { title: "Safety Verified", subtitle: "FLEET AUDITED", desc: "Regular 30-point safety checks on all luxury vehicles.", icon: <ShieldCheck size={24} /> },
-  ];
-
-  const clients = [
-    "British Deputy High Commission", "Birla Soft", "Taj Group of Hotels", "ITC Park Sheraton Hotels",
-    "Kenna Metal Widia", "Dun & Brad Trans Union Ltd", "Oxford University Press", "Reliance Petro Marketing"
-  ];
+  const carouselLogos = [
+  { src: iatoLogo, alt: "IATO" },
+  { src: ittaLogo, alt: "ITTA" },
+  { src: skalLogo, alt: "SKAL" },
+  { src: ccAvenueLogo, alt: "CC Avenue" },
+  { src: iatoLogo, alt: "IATO" },
+  { src: ittaLogo, alt: "ITTA" },
+  { src: skalLogo, alt: "SKAL" },
+  { src: ccAvenueLogo, alt: "CC Avenue" }
+];
 
   return (
-    <main className="bg-white pt-0"> 
+    <div className="bg-white font-sans text-slate-900 overflow-hidden">
       
-      {/* 1. HERO SECTION - Reduced padding from pt-44/pb-24 to pt-32/pb-16 */}
-      <section className="bg-[#0a1128] pt-32 pb-16 px-6 text-center text-white relative border-b border-white/5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -mr-48 -mt-48"></div>
+      {/* 1. HERO SECTION */}
+      <section 
+        className="relative bg-cover bg-fixed bg-center pt-40 pb-24 px-6 text-center text-white border-b border-white/5"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <div className="absolute inset-0 bg-[#0a1128]/85 z-0"></div>
         <div className="max-w-4xl mx-auto relative z-10">
-          <p className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] mb-4 italic">Established Since 1990</p>
+          <p className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 italic">Established Since 1999</p>
           <h1 className="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter leading-tight">
             About <span className="text-blue-500 italic">Express Travel</span>
           </h1>
-          <p className="text-gray-400 text-base md:text-lg leading-relaxed italic max-w-2xl mx-auto border-l-2 border-blue-600/30 pl-6">
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed italic max-w-2xl mx-auto border-l-2 border-blue-600/30 pl-6 text-left">
             "Clients are our Prime Assets. We nurture a culture founded on TRUST, PRIDE and TEAM WORK."
           </p>
         </div>
       </section>
 
-      {/* 2. HISTORY & LEADERSHIP - Reduced padding */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
-          <div className="lg:w-1/2 space-y-6">
-            <h2 className="text-3xl font-black text-slate-900 uppercase leading-tight tracking-tighter">
-              Successful <br/><span className="text-blue-600 italic">Entrepreneurship</span>
+      {/* 2. CONTENT SECTION: ABOUT US */}
+      <section className="max-w-6xl mx-auto py-20 px-6 grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* LEFT SIDE: Images - Yahan apni images set karein */}
+        <div className="relative h-[400px] w-full">
+          {/* Pehli Image */}
+          <div className="absolute top-0 right-4 w-3/4 h-3/4 rounded-2xl overflow-hidden border-4 border-slate-100 shadow-xl z-10">
+            <img 
+              src={MyImage1} 
+              className="w-full h-full object-cover" 
+              alt="Express Travel Fleet" 
+            />
+          </div>
+          
+          {/* Dusri Image */}
+          <div className="absolute bottom-0 left-4 w-1/2 h-1/2 rounded-2xl overflow-hidden border-4 border-[#001233] shadow-2xl z-20">
+            <img 
+              src={MyImage2} 
+              className="w-full h-full object-cover" 
+              alt="Express Travel Service" 
+            />
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: Content (Jaisa aapne bataya tha) */}
+        <div className="space-y-6">
+          <div className="flex flex-col gap-1">
+            <p className="text-blue-600 font-bold uppercase text-[12px] tracking-[0.2em]">
+              About Express Travel Corporate Services
+            </p>
+            <h2 className="text-5xl font-black text-[#001233] uppercase leading-none tracking-tighter">
+              About Us
             </h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed text-sm font-medium">
-              <p>Express Travel was founded by <b>Mr. B.R. Arumugam</b>. Today, led by <b>Mr. A. Bharath</b>, we operate nearly 50+ premium fleets.</p>
-              <p>Our vision has enabled the group to carve a special <span className="font-bold text-blue-600 italic uppercase">Niche</span> in the Travel industry.</p>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-3 pt-4">
-              {stats.map((stat, i) => (
-                <div key={i} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-center">
-                  <div className="text-blue-600 flex justify-center mb-1">{stat.icon}</div>
-                  <div className="text-xl font-black text-slate-900">{stat.value}</div>
-                  <div className="text-[8px] uppercase font-bold text-gray-400 tracking-widest">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="lg:w-1/2">
-            <div className="rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
-              <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1200" alt="Corporate" className="w-full h-64 md:h-80 object-cover" />
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <h3 className="text-xl font-black text-slate-900 leading-tight uppercase">
+                DRIVE IN THE CITY <br /> & OUTSTATION
+              </h3>
+              <p className="text-blue-600 font-bold text-[11px] uppercase tracking-widest">
+                A CAR FOR EVERY NEED
+              </p>
+            </div>
+
+            <div className="text-slate-600 text-[15px] leading-relaxed space-y-4">
+              <p className="italic font-semibold text-slate-800 border-l-4 border-blue-600 pl-4 py-1 bg-blue-50/50">
+                "We have a range of cars, so something will perfectly fit your trip"
+              </p>
+              
+              <p className="text-justify font-medium">
+                <span className="font-bold text-[#001233]">EXPRESS TRAVEL CORPORATE SERVICES LLP</span> has become a very successful entrepreneur in operating all kinds of luxury cars to corporate clients including British Deputy High Commission, Birla Soft, Taj Group of Hotels, ITC Park Sheraton Hotels, and many more prestigious organizations.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- BACKGROUND SECTION (Mission & Objectives) - Reduced py --- */}
-      <div className="relative bg-cover bg-fixed bg-center py-16 px-6" style={{ backgroundImage: `url(${bgImage})` }}>
+      {/* 3. MISSION & OBJECTIVES */}
+      <div 
+        className="relative bg-cover bg-fixed bg-center py-20 px-6" 
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
         <div className="absolute inset-0 bg-black/85 z-0"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -112,35 +140,174 @@ const About = () => {
             <div className="w-16 h-1 bg-blue-500 mx-auto mt-3 rounded-full"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {objectives.map((obj, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-lg p-6 rounded-[1.5rem] border border-white/10 group">
+              <div key={i} className="bg-white/10 backdrop-blur-lg p-6 rounded-[1.5rem] border border-white/10 group transition-all duration-300 hover:bg-white/20">
                 <div className="mb-4 p-3 bg-blue-500/20 w-fit rounded-xl text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">{obj.icon}</div>
                 <h3 className="text-lg font-black mb-2 uppercase text-white leading-tight">{obj.title}</h3>
-                <p className="text-gray-400 text-xs leading-relaxed">{obj.desc}</p>
+  
+                <p className="text-white text-sm font-bold leading-relaxed">{obj.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+      {/* --- WHITE SPACE / DIVIDER BETWEEN SECTIONS --- */}
+      <div className="h-16 md:h-24 bg-white w-full"></div>
 
-      {/* 5. GLOBAL STANDARDS (Accreditations) - Updated to Light Background to match spacing logic */}
-      <section className="bg-slate-50 py-16 px-6 text-center">
-        <h2 className="text-3xl font-black mb-12 uppercase tracking-tighter text-slate-900">Global Standards</h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {accreditations.map((item, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-200 hover:shadow-lg transition-all">
-              <div className="text-blue-600 flex justify-center mb-4">{item.icon}</div>
-              <h3 className="font-black text-sm uppercase text-slate-900">{item.title}</h3>
-              <p className="text-blue-600 text-[8px] font-black tracking-widest mb-2 uppercase">{item.subtitle}</p>
-              <p className="text-slate-500 text-[11px] leading-relaxed">{item.desc}</p>
+
+      {/* --- COMPACT LIGHT BLUE STATS SECTION --- */}
+      <section className="bg-blue-50 py-12 px-6 border-y border-blue-100 rounded-[3rem] mx-4 md:mx-10 shadow-sm">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x-0 md:divide-x md:divide-blue-200">
+            
+            {/* Stat 1 */}
+            <div className="text-center">
+              <h2 className="text-5xl font-black text-[#001233] mb-1 tracking-tighter">
+                50+
+              </h2>
+              <p className="text-blue-600 font-extrabold text-[10px] uppercase tracking-widest">
+                Fleet Vehicles
+              </p>
             </div>
-          ))}
+
+            {/* Stat 2 */}
+            <div className="text-center">
+              <h2 className="text-5xl font-black text-[#001233] mb-1 tracking-tighter">
+                25+
+              </h2>
+              <p className="text-blue-600 font-extrabold text-[10px] uppercase tracking-widest">
+                Years Experience
+              </p>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="text-center">
+              <h2 className="text-5xl font-black text-[#001233] mb-1 tracking-tighter">
+                15+
+              </h2>
+              <p className="text-blue-600 font-extrabold text-[10px] uppercase tracking-widest">
+                Cities Covered
+              </p>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="text-center">
+              <h2 className="text-5xl font-black text-[#001233] mb-1 tracking-tighter">
+                1000+
+              </h2>
+              <p className="text-blue-600 font-extrabold text-[10px] uppercase tracking-widest">
+                Happy Clients
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
+      {/* --- WHITE SPACE DIVIDER (Before Story) --- */}
+      <div className="h-20 bg-white w-full"></div>
       
-    </main>
+
+    {/* 5. FOOTER CTA - Matched with Mission Section Style */}
+      <footer 
+        className="relative bg-cover bg-fixed bg-center py-12 px-6 text-white overflow-hidden" 
+        style={{ 
+          backgroundImage: `url(${bgImage})`,
+          // Mission section se match karta hua clean clipPath
+          clipPath: 'polygon(0 8%, 10% 0, 90% 0, 100% 8%, 100% 100%, 0 100%)' 
+        }}
+      >
+        {/* Exact same overlay as Mission section (bg-black/85) */}
+        <div className="absolute inset-0 bg-black/85 z-0"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          
+          <div className="text-center mb-8">
+            <h2 className="text-5xl font-extrabold uppercase tracking-tighter text-white">
+              Our <span className="text-blue-500">Story</span>
+            </h2>
+            <h4>From humble beginnings to becoming a trusted name in luxury transportation</h4>
+            <div className="w-16 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+          </div>
+
+          {/* 2 Column Grid with Larger Fonts */}
+          <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            
+            {/* Column 1 */}
+            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 text-center">
+              <Globe className="mx-auto text-blue-400 mb-4" size={32} />
+              <h4 className="text-xl font-bold uppercase tracking-tight text-white mb-3 italic">
+                "Our Foundation"
+              </h4>
+              <p className="text-gray-200 text-base leading-relaxed font-medium">
+                With dynamic leadership and hard work, our vision has enabled us to carve a special niche in the travel industry. We operate nearly 50 fleets ranging from TATA INDICA to MERCEDES BENZ E CLASS.
+              </p>
+              <div className="mt-4">
+                <p className="text-blue-400 font-black text-sm uppercase tracking-widest">Team Work</p>
+                <p className="text-white/60 font-bold text-[10px] uppercase">Our core value</p>
+              </div>
+            </div>
+
+            {/* Column 2 */}
+            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 text-center">
+              <LayoutGrid className="mx-auto text-blue-400 mb-4" size={32} />
+              <h4 className="text-xl font-bold uppercase tracking-tight text-white mb-3 italic">
+                "Our Philosophy"
+              </h4>
+              <p className="text-gray-200 text-base leading-relaxed font-medium">
+                Our business philosophy is based on our belief that clients are our prime assets. We nurture a culture founded on TRUST, PRIDE, and TEAM WORK.
+              </p>
+              <div className="mt-4">
+                <p className="text-blue-400 font-black text-sm uppercase tracking-widest">GROWING NETWORK</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </footer>
+
+
+{/* --- INFINITE CAROUSEL SECTION --- */}
+      <section className="bg-white py-16 overflow-hidden">
+        <div className="max-w-full relative">
+          <p className="text-blue-600 font-bold tracking-[0.3em] uppercase text-[10px] mb-10 italic text-center">
+            Memberships & Secure Payments
+          </p>
+          
+          <div className="flex">
+            {/* Animation Wrapper */}
+            <div className="flex animate-scroll whitespace-nowrap gap-12 py-4">
+              {carouselLogos.map((logo, index) => (
+                <div key={index} className="flex-shrink-0 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center h-24 w-44 transition-transform hover:scale-105">
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="max-h-full max-w-full object-contain" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CSS Animation - Isko aap global CSS mein bhi daal sakte hain ya isi file mein */}
+        <style>{`
+          @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-scroll {
+            display: flex;
+            animation: scroll 25s linear infinite;
+          }
+          .animate-scroll:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+      </section>
+
+    </div>
   );
 };
 

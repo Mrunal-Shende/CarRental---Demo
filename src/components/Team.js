@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronRight, Quote, Linkedin, ExternalLink } from 'lucide-react';
+import { ChevronRight, Quote } from 'lucide-react';
+import mohanImg from '../assets/mohan.jpg';
+import alagarImg from '../assets/alagarswamy.jpg';
 
 const Team = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -8,7 +10,7 @@ const Team = () => {
     {
       name: "Mohan Ramadass",
       role: "Founder & Managing Director",
-      image: "https://www.etconline.in/images/mohan.jpg", 
+      image: mohanImg, 
       bio: "He stands as a beacon of entrepreneurial spirit and resilience, having elevated ETC from humble beginnings over the past 25 years. Through visionary leadership and steadfast determination, he has not only navigated challenges but also defined industry standards.",
       vision: "With a deep passion for travel, looking in the future, He is focused on driving further innovation and expanding the company's services to enhance the car travel experience.",
       experience: "25+ Years"
@@ -16,7 +18,7 @@ const Team = () => {
     {
       name: "Alagarsamy",
       role: "Chief Operating Officer",
-      image: "https://www.etconline.in/images/alagarswamy.jpg",
+      image: alagarImg,
       bio: "Alagarswamy with 23-year journey in the car rental industry, starting from the ground up, worked across car rental industry like AVIS, Car Club & Carzonrent.",
       vision: "Responsible for leading the ETC business in all verticals, operations, driving profitability, deliver exceptional results, strategic planning, and team development.",
       experience: "23+ Years"
@@ -81,7 +83,7 @@ const Team = () => {
                     <div className="absolute inset-0 bg-blue-600 rounded-3xl rotate-3 group-hover:rotate-0 transition-transform duration-500"></div>
                     <img 
                       src={teamMembers[activeTab].image} 
-                      alt={teamMembers[activeTab].name} /* Pehle yahan 'member.name' tha jo galat tha */
+                      alt={teamMembers[activeTab].name}
                       className="relative z-10 w-full h-[450px] object-cover rounded-3xl shadow-2xl transition-all duration-700 grayscale hover:grayscale-0"
                     />
                     <div className="absolute -bottom-6 -right-6 z-20 bg-white p-6 rounded-2xl shadow-xl hidden md:block border border-gray-100">
@@ -105,19 +107,10 @@ const Team = () => {
                     </p>
                   </div>
 
-                  <div className="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-600 mb-8">
+                  <div className="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-600">
                     <p className="text-slate-800 font-medium text-md leading-relaxed">
                       {teamMembers[activeTab].vision}
                     </p>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <button className="bg-slate-900 text-white p-4 rounded-xl hover:bg-blue-600 transition-colors">
-                      <Linkedin className="w-5 h-5" />
-                    </button>
-                    <button className="flex items-center gap-2 border-2 border-slate-900 text-slate-900 px-6 py-4 rounded-xl font-bold hover:bg-slate-900 hover:text-white transition-all shadow-lg shadow-gray-200">
-                      View Profile <ExternalLink className="w-4 h-4" />
-                    </button>
                   </div>
                 </div>
 
