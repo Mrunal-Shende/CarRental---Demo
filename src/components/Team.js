@@ -41,41 +41,45 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-2xl transition-shadow duration-300"
+              className="bg-white rounded-3xl p-6 lg:p-10 shadow-lg border border-gray-100 flex flex-col h-full"
             >
-              <div className="flex flex-col md:flex-row gap-8 items-start mb-6">
-                {/* Image Container */}
-                <div className="w-full md:w-2/5 shrink-0">
+              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-6">
+                {/* Image Container - Fixed for Full Image on Mobile */}
+                <div className="w-full md:w-1/2 lg:w-2/5 shrink-0">
                   <div className="relative">
                     <div className="absolute inset-0 bg-blue-600 rounded-2xl rotate-2"></div>
+                    
+                    {/* Fixed Logic: aspect-auto and object-contain for full visibility on mobile */}
                     <img 
                       src={member.image} 
                       alt={member.name}
-                      className="relative z-10 w-full h-64 object-cover rounded-2xl shadow-md grayscale hover:grayscale-0 transition-all duration-500"
+                      className="relative z-10 w-full h-auto md:h-72 lg:h-80 object-contain md:object-cover object-top rounded-2xl shadow-md transition-all duration-500"
                     />
-                    <div className="absolute -bottom-3 -right-3 z-20 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
-                      <p className="text-xs font-bold uppercase tracking-tighter">Exp: {member.experience}</p>
+                    
+                    <div className="absolute -bottom-2 -right-2 z-20 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+                      <p className="text-[10px] font-black uppercase tracking-tighter leading-none">Exp: {member.experience}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Name and Role */}
-                <div className="w-full md:w-3/5">
-                  <h3 className="text-2xl font-black text-slate-900 mb-1">{member.name}</h3>
-                  <p className="text-blue-600 font-bold uppercase text-xs tracking-wider mb-4">{member.role}</p>
+                <div className="w-full md:w-1/2 lg:w-3/5 text-center md:text-left mt-6 md:mt-0">
+                  <h3 className="text-2xl lg:text-3xl font-black text-slate-900 mb-1 leading-tight">{member.name}</h3>
+                  <p className="text-blue-600 font-bold uppercase text-xs tracking-wider mb-6">{member.role}</p>
                   
                   <div className="relative">
-                    <Quote className="absolute -top-2 -left-4 w-6 h-6 text-blue-100 -z-0" />
-                    <p className="text-gray-600 text-sm leading-relaxed italic relative z-10">
-                      {member.bio}
+                    <Quote className="hidden md:block absolute -top-4 -left-4 w-8 h-8 text-blue-50 opacity-60" />
+                    <p className="text-slate-600 text-sm lg:text-base leading-relaxed italic relative z-10 font-medium">
+                      "{member.bio}"
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Vision Box - Pushed to bottom */}
-              <div className="mt-auto bg-slate-50 p-5 rounded-xl border-l-4 border-blue-600">
-                <p className="text-slate-700 text-sm font-medium leading-relaxed">
+              {/* Vision Box */}
+              <div className="mt-auto bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-600">
+                <p className="text-slate-700 text-sm font-bold leading-relaxed">
+                  <span className="text-blue-600 uppercase text-[10px] block mb-2 tracking-widest font-black">Strategic Vision</span>
                   {member.vision}
                 </p>
               </div>

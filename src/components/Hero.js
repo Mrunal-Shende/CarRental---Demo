@@ -1,101 +1,108 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Navigation ke liye import
+import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, ChevronRight, X, ShieldCheck, 
   User, Phone, Calendar, CheckCircle2 
 } from 'lucide-react';
 
+// --- APNI IMAGES YAHAN IMPORT KAREIN ---
+import hero1 from '../assets/hero/carwithjet.jpg'; 
+import hero2 from '../assets/hero/road-blue.jpg';
+import hero3 from '../assets/hero/san-luis.webp';
+import hero4 from '../assets/hero/corporate.avif';
+import hero5 from '../assets/hero/bmw.jpg';
+import hero6 from '../assets/hero/bus.jpg';
+
 const Hero = () => {
-  const navigate = useNavigate(); // Navigation function initialize kiya
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // Modal states
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [bookingStep, setBookingStep] = useState('form');
-  const [formData, setFormData] = useState({ name: '', phone: '', date: '' });
 
   const slides = [
     {
-      title: 'Premium Corporate Travel & Luxury Car Services',
-      subtitle: 'Trusted by India\'s top organizations',
-      bg: 'https://images.pexels.com/photos/707046/pexels-photo-707046.jpeg?cs=srgb&dl=automobile-car-clouds-707046.jpg&fm=jpg'
+      title: 'GLOBAL CHAUFFEUR & MOBILITY SOLUTIONS',
+      subtitle: 'Premium executive transportation for MNCs and international delegations across major global hubs.',
+      bg: hero1
     },
     {
-      title: 'EXCELLENCE IN MOBILITY',
-      subtitle: 'Express Travel Corporate Services delivers unparalleled luxury fleet services and premium mobility across major Indian cities.',
-      bg: 'https://cdn.pixabay.com/photo/2016/11/22/23/55/car-1851299_1280.jpg'
+      title: 'ELITE CORPORATE CONCIERGE SINCE 1999',
+      subtitle: 'Experience unparalleled luxury and reliability trusted by Fortune 500 companies worldwide.',
+      bg: hero2
     },
     {
-      title: 'VIP CONCIERGE & EVENTS',
-      subtitle: 'Seamless transportation for large-scale corporate delegations and VVIP movements.',
-      bg: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80'
+      title: 'VVIP DIPLOMATIC & SUMMIT MOVEMENTS',
+      subtitle: 'High-security luxury fleet services for international summits, consulates, and VIP transitions.',
+      bg: hero3
+    },
+    {
+      title: 'DRIVE IN INDIA AND OVERSEAS',
+      subtitle: 'A car for every need—extending our excellence to 120+ cities with precision and safety.',
+      bg: hero4
+    },
+    {
+      title: 'TECHNOLOGY DRIVEN TRAVEL EXPERIENCE',
+      subtitle: 'Seamless bookings and transparent travel management through our new-age mobile tools.',
+      bg: hero5
+    },
+    {
+      title: 'ESTABLISHED LEGACY OF TRUST',
+      subtitle: 'Recognized by the Ministry of Tourism, we nurture a culture founded on Pride and Teamwork.',
+      bg: hero6
     }
   ];
 
-  // OUR FLEET Click Handler - Ye direct page change karega
-  const goToFleet = () => {
-    // Agar aapke App.js mein path '/luxury-car' hai toh ye work karega
-    navigate('/luxury-car');
-    window.scrollTo(0, 0); // Naye page par upar se start ho
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
+  const nextSlide = () => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((p) => (p + 1) % slides.length);
-    }, 8000);
+    const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const handleBookingSubmit = (e) => {
-    e.preventDefault();
-    setBookingStep('success');
-  };
-
-  const closeModal = () => {
-    setShowBookingModal(false);
-    setBookingStep('form');
-    setFormData({ name: '', phone: '', date: '' });
-  };
+  }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden group">
-      {/* Background Slides */}
+    <section className="relative h-[60vh] md:h-[100vh] w-full overflow-hidden group bg-black font-sans">
       {slides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-all duration-1000 transform ${
-            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+            index === currentSlide ? 'opacity-100 z-20' : 'opacity-0 z-10'
           }`}
         >
-          <div className="absolute inset-0 bg-black/50 z-10" />
-          <img src={slide.bg} alt={slide.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white px-4">
-            <h1 className="text-4xl md:text-7xl font-bold mb-6 text-center tracking-tight max-w-5xl">
+          <div className="absolute inset-0 bg-black/50 md:bg-black/40 z-10" />
+          
+          <img 
+            src={slide.bg} 
+            alt={slide.title} 
+            className="w-full h-full object-cover object-center" 
+          />
+          
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white px-4 md:px-6">
+            <div className="flex items-center gap-2 mb-2">
+               <span className="h-[1px] w-4 md:w-8 bg-blue-500"></span>
+               <p className="text-blue-400 font-bold tracking-[0.2em] text-[8px] md:text-xs uppercase">Since 1999 | Global Excellence</p>
+               <span className="h-[1px] w-4 md:w-8 bg-blue-500"></span>
+            </div>
+            
+            <h1 className="text-2xl md:text-5xl lg:text-6xl font-black mb-3 text-center tracking-tighter max-w-5xl uppercase italic leading-tight">
               {slide.title}
             </h1>
-            <p className="text-lg md:text-2xl mb-8 max-w-2xl text-center text-gray-200">
+            
+            <p className="text-[20px] md:text-lg mb-6 max-w-2xl text-center text-gray-300 font-medium leading-relaxed">
               {slide.subtitle}
             </p>
-            <div className="flex gap-4">
+            
+            <div className="flex flex-row gap-3 relative z-50"> 
               <button 
                 onClick={() => setShowBookingModal(true)}
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30"
+                className="px-5 py-3 md:px-8 md:py-4 bg-blue-600 hover:bg-blue-700 text-white font-black uppercase text-[10px] tracking-widest transition-all rounded-none"
               >
                 Book Now
               </button>
               
-              {/* Updated OUR FLEET Button */}
               <button 
-                onClick={goToFleet}
-                className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white rounded-xl font-bold transition-all"
+                onClick={() => navigate('/luxury-car')}
+                className="px-5 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white hover:text-black text-white font-black uppercase text-[10px] tracking-widest transition-all rounded-none"
               >
                 Our Fleet
               </button>
@@ -104,62 +111,47 @@ const Hero = () => {
         </div>
       ))}
 
-      {/* Navigation Arrows */}
-      <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-xl bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white/20 active:scale-90">
-        <ChevronLeft size={32} />
+      <button onClick={prevSlide} className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 p-2 md:p-3 bg-black/30 text-white border border-white/10 hover:bg-blue-600 transition-all opacity-0 group-hover:opacity-100">
+        <ChevronLeft size={20} className="md:w-6 md:h-6" />
       </button>
-      <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-xl bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white/20 active:scale-90">
-        <ChevronRight size={32} />
+      <button onClick={nextSlide} className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-40 p-2 md:p-3 bg-black/30 text-white border border-white/10 hover:bg-blue-600 transition-all opacity-0 group-hover:opacity-100">
+        <ChevronRight size={20} className="md:w-6 md:h-6" />
       </button>
 
-      {/* BOOKING MODAL */}
+      {/* COMPACT MODAL FORM */}
       {showBookingModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-md" onClick={closeModal}></div>
-          <div className="relative bg-white w-full max-w-xl rounded-none overflow-hidden shadow-2xl">
-            <button onClick={closeModal} className="absolute top-6 right-6 z-50 bg-white hover:bg-gray-100 p-2 border border-gray-100">
-              <X size={24} className="text-slate-800" />
+          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onClick={() => setShowBookingModal(false)}></div>
+          <div className="relative bg-white w-full max-w-[340px] rounded-none shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <button onClick={() => setShowBookingModal(false)} className="absolute top-0 right-0 p-3 text-gray-400 hover:bg-red-600 hover:text-white transition-all z-50">
+              <X size={18} />
             </button>
-            
-            <div className="p-8 md:p-12">
-              {bookingStep === 'form' && (
-                <form onSubmit={handleBookingSubmit}>
-                  <div className="flex items-center gap-2 mb-2 text-blue-600 font-black text-xs uppercase tracking-widest">
-                    <ShieldCheck size={18} /> Direct Inquiry
-                  </div>
-                  <h3 className="text-2xl font-black text-slate-900 mb-6 uppercase">Book Your Service</h3>
-                  
-                  <div className="space-y-4 mb-8">
-                    <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input required type="text" placeholder="Name" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500" 
-                        onChange={(e) => setFormData({...formData, name: e.target.value})} />
-                    </div>
-                    <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input required type="tel" placeholder="Phone Number" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500" 
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})} />
-                    </div>
-                    <div className="relative">
-                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input required type="date" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500" 
-                        onChange={(e) => setFormData({...formData, date: e.target.value})} />
-                    </div>
-                  </div>
-                  <button type="submit" className="w-full bg-slate-900 text-white py-4 font-black text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl">
-                    Request Call Back
-                  </button>
+            <div className="p-6 text-black">
+              {bookingStep === 'form' ? (
+                <form onSubmit={(e) => { e.preventDefault(); setBookingStep('success'); }} className="space-y-2">
+                   <h3 className="text-sm font-black uppercase tracking-tight border-l-3 border-blue-600 pl-2 mb-4">Request Quote</h3>
+                   <input required type="text" placeholder="NAME" className="w-full p-2.5 bg-gray-50 border border-gray-200 outline-none focus:border-blue-600 text-[9px] font-bold uppercase rounded-none" />
+                   <input required type="tel" placeholder="NUMBER" className="w-full p-2.5 bg-gray-50 border border-gray-200 outline-none focus:border-blue-600 text-[9px] font-bold uppercase rounded-none" />
+                   <input required type="email" placeholder="EMAIL" className="w-full p-2.5 bg-gray-50 border border-gray-200 outline-none focus:border-blue-600 text-[9px] font-bold uppercase rounded-none" />
+                   <div className="grid grid-cols-2 gap-2">
+                        <div className="flex flex-col">
+                          <label className="text-[7px] font-black text-gray-400 mb-1 uppercase">Start Date</label>
+                          <input required type="date" className="w-full p-2 bg-gray-50 border border-gray-200 outline-none focus:border-blue-600 text-[9px] font-bold rounded-none" />
+                        </div>
+                        <div className="flex flex-col">
+                          <label className="text-[7px] font-black text-gray-400 mb-1 uppercase">End Date</label>
+                          <input required type="date" className="w-full p-2 bg-gray-50 border border-gray-200 outline-none focus:border-blue-600 text-[9px] font-bold rounded-none" />
+                        </div>
+                   </div>
+                   <button type="submit" className="w-full bg-[#1C4D8D] text-white py-3 mt-2 font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 transition-all rounded-none shadow-lg">
+                     Submit Request
+                   </button>
                 </form>
-              )}
-
-              {bookingStep === 'success' && (
-                <div className="text-center py-6">
-                  <CheckCircle2 size={70} className="mx-auto mb-4 text-green-500" />
-                  <h3 className="text-2xl font-black text-slate-900 mb-2 uppercase">Thank You, {formData.name}!</h3>
-                  <p className="text-slate-500 mb-6">Hamara team aapko {formData.phone} par jald hi contact karega.</p>
-                  <button onClick={closeModal} className="w-full bg-slate-900 text-white py-4 font-black text-xs uppercase tracking-widest hover:bg-blue-600">
-                    Close
-                  </button>
+              ) : (
+                <div className="text-center py-4">
+                  <CheckCircle2 size={40} className="mx-auto mb-3 text-green-500" />
+                  <p className="font-black uppercase text-[11px] tracking-tighter">Request Sent Successfully</p>
+                  <button onClick={() => { setShowBookingModal(false); setBookingStep('form'); }} className="mt-4 w-full border border-black py-2 font-black text-[9px] uppercase rounded-none">Close</button>
                 </div>
               )}
             </div>

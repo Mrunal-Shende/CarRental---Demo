@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Users, Zap, Star, Search, X, 
-  ShieldCheck, ChevronRight, ArrowUpDown, CheckCircle2, 
+  ShieldCheck, ChevronRight, CheckCircle2, 
   User, Phone, Calendar 
 } from 'lucide-react';
 
@@ -20,34 +20,36 @@ import COMMUTER_2 from '../assets/luxury/COMMUTER_2.jpg';
 import MINI_COACH from '../assets/luxury/MINI_COACH.jpg';
 import LARGE_BUS from '../assets/luxury/LARGE_BUS.png';
 import HERO_BG from '../assets/clients/hero_bg.jpeg'; 
+import CITROEN_eC3_EV from '../assets/luxury/CITROEN eC3 EV.avif';
+import BMW_i7_ELECTRIC from '../assets/luxury/BMW i7 ELECTRIC.avif';
+import KIA_CAREN_CLAVIS from '../assets/luxury/KIA CAREN CLAVIS.avif';
 
 const LuxuryCar = () => {
   const [activeCategory, setActiveCategory] = useState('All Cars');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCar, setSelectedCar] = useState(null);
-  const [sortOrder, setSortOrder] = useState('default');
   const [bookingStep, setBookingStep] = useState('details'); 
   const [formData, setFormData] = useState({ name: '', phone: '', date: '' });
 
   const categories = ["All Cars", "Luxury Cars", "Premium Cars", "Economy Cars", "EVs", "Luxury Van", "Mini Coach", "Large Bus"];
 
   const cars = [
-    { id: 14, name: 'CITROEN eC3 EV', category: 'EVs', image: AMAZE, description: 'Eco-friendly urban mobility with silent electric performance.', features: ['Zero Emissions', 'Quiet Cabin', 'Fast Charging'], specs: { seats: '5 SEATS' } },
-    { id: 15, name: 'BMW i7 ELECTRIC', category: 'EVs', image: BENZ_S, description: 'Pure electric luxury sedan with cutting-edge technology.', features: ['Electric Drivetrain', 'Executive Lounge', 'Theatre Screen'], specs: { seats: '4 SEATS' } },
-    { id: 16, name: 'KIA CAREN CLAVIS', category: 'EVs', image: KIA_7788, description: 'Spacious electric MPV designed for family and corporate use.', features: ['Silent Drive', 'Spacious Interiors', 'Modern Cockpit'], specs: { seats: '7 SEATS' } },
-    { id: 1, name: 'Mercedes-Benz S-Class', category: 'Luxury Cars', image: BENZ_S, rating: 5.0, description: 'The ultimate definition of luxury and class with unparalleled comfort.', features: ['Massage Seats', 'Ambient Lighting', 'Soft Close Doors'], specs: { seats: '4 SEATS' } },
-    { id: 2, name: 'Mercedes-Benz E-Class', category: 'Luxury Cars', image: BENZ_E, rating: 4.7, description: 'Dynamic performance meets executive comfort.', features: ['Sunroof', 'Harman Kardon', 'Gesture Control'], specs: { seats: '5 SEATS' } },
-    { id: 3, name: 'KIA CARNIVAL', category: 'Premium Cars', image: KIA_7788, rating: 4.6, description: 'Reliable, efficient, and surprisingly comfortable.', features: ['Hybrid Engine', 'Quiet Cabin', 'Cruise Control'], specs: { seats: '7 SEATS' } },
-    { id: 4, name: 'Toyota Fortuner', category: 'Premium Cars', image: FORTUNER, rating: 4.9, description: 'First-class travel for groups with premium captain seats.', features: ['Reclining Seats', '360 Camera', 'Work Tables'], specs: { seats: '7 SEATS' } },
-    { id: 5, name: 'Toyota Corolla Altis', category: 'Premium Cars', image: ALTIS, rating: 4.4, description: 'Perfect for family outings and airport transfers.', features: ['Roof AC', 'Ample Legroom', 'Music System'], specs: { seats: '5 SEATS' } },
-    { id: 6, name: 'Honda City', category: 'Premium Cars', image: HONDA_CITY, rating: 4.7, description: 'The best way for medium groups to travel in style.', features: ['Pushback Seats', 'LCD Screen', 'Ice Box'], specs: { seats: '5 SEATS' } },
-    { id: 7, name: 'Toyota Innova Crysta', category: 'Economy Cars', image: CRYSTA, rating: 4.8, description: 'The gold standard for family comfort.', features: ['Plush Leather Seats', 'Rear AC Vents', 'Ample Boot Space'], specs: { seats: '7 SEATS' } },
-    { id: 8, name: 'Maruti Suzuki Dzire', category: 'Economy Cars', image: DZIRE, rating: 4.3, description: 'Compact, efficient, and perfect for city transfers.', features: ['Bluetooth Audio', 'Air Conditioning', 'Generous Legroom'], specs: { seats: '4 SEATS' } },
-    { id: 9, name: 'Honda Amaze', category: 'Economy Cars', image: AMAZE, rating: 4.5, description: 'A smooth, premium sedan experience for small families.', features: ['Touchscreen Infotainment', 'ISOFIX Mounts', 'Power Windows'], specs: { seats: '4 SEATS' } },
-    { id: 10, name: 'Toyota Hiace Commuter (Std)', category: 'Luxury Van', image: COMMUTER_1, rating: 4.7, description: 'Spacious high-roof van ideal for corporate team travel.', features: ['Reclining Seats', 'Mic Connectivity', 'Ambiance Lighting'], specs: { seats: '12 SEATS' } },
-    { id: 11, name: 'Toyota Hiace Commuter (Exec)', category: 'Luxury Van', image: COMMUTER_2, rating: 5.0, description: 'Top-tier luxury travel for high-profile delegations.', features: ['Captain Seats', 'WiFi Hotspot', 'Premium Sound System'], specs: { seats: '9 SEATS' } },
-    { id: 12, name: 'Bharat Benz Mini Coach', category: 'Mini Coach', image: MINI_COACH, rating: 4.6, description: 'The perfect mid-sized solution for tour groups.', features: ['Overhead Luggage Rack', 'PA System', 'Individual Reading Lights'], specs: { seats: '21 SEATS' } },
-    { id: 13, name: 'VOLVO Multi-Axle Bus', category: 'Large Bus', image: LARGE_BUS, rating: 4.9, description: 'Ultimate high-capacity transport for large events.', features: ['Air Suspension', 'On-board Washroom', 'Multiple TV Screens'], specs: { seats: '50 SEATS' } },
+    { id: 1, name: 'CITROEN eC3 EV', category: 'EVs', image: CITROEN_eC3_EV, description: 'Eco-friendly urban mobility with silent electric performance.', features: ['Zero Emissions', 'Quiet Cabin', 'Fast Charging'], specs: { seats: '5 SEATS' } },
+    { id: 2, name: 'BMW i7 ELECTRIC', category: 'EVs', image: BMW_i7_ELECTRIC, description: 'Pure electric luxury sedan with cutting-edge technology.', features: ['Electric Drivetrain', 'Executive Lounge', 'Theatre Screen'], specs: { seats: '4 SEATS' } },
+    { id: 3, name: 'KIA CAREN CLAVIS', category: 'EVs', image: KIA_CAREN_CLAVIS, description: 'Spacious electric MPV designed for family and corporate use.', features: ['Silent Drive', 'Spacious Interiors', 'Modern Cockpit'], specs: { seats: '7 SEATS' } },
+    { id: 4, name: 'Mercedes-Benz S-Class', category: 'Luxury Cars', image: BENZ_S, rating: 5.0, description: 'The ultimate definition of luxury and class with unparalleled comfort.', features: ['Massage Seats', 'Ambient Lighting', 'Soft Close Doors'], specs: { seats: '4 SEATS' } },
+    { id: 5, name: 'Mercedes-Benz E-Class', category: 'Luxury Cars', image: BENZ_E, rating: 4.7, description: 'Dynamic performance meets executive comfort.', features: ['Sunroof', 'Harman Kardon', 'Gesture Control'], specs: { seats: '5 SEATS' } },
+    { id: 6, name: 'KIA CARNIVAL', category: 'Premium Cars', image: KIA_7788, rating: 4.6, description: 'Reliable, efficient, and surprisingly comfortable.', features: ['Hybrid Engine', 'Quiet Cabin', 'Cruise Control'], specs: { seats: '7 SEATS' } },
+    { id: 7, name: 'Toyota Fortuner', category: 'Premium Cars', image: FORTUNER, rating: 4.9, description: 'First-class travel for groups with premium captain seats.', features: ['Reclining Seats', '360 Camera', 'Work Tables'], specs: { seats: '7 SEATS' } },
+    { id: 8, name: 'Toyota Corolla Altis', category: 'Premium Cars', image: ALTIS, rating: 4.4, description: 'Perfect for family outings and airport transfers.', features: ['Roof AC', 'Ample Legroom', 'Music System'], specs: { seats: '5 SEATS' } },
+    { id: 9, name: 'Honda City', category: 'Premium Cars', image: HONDA_CITY, rating: 4.7, description: 'The best way for medium groups to travel in style.', features: ['Pushback Seats', 'LCD Screen', 'Ice Box'], specs: { seats: '5 SEATS' } },
+    { id: 10, name: 'Toyota Innova Crysta', category: 'Economy Cars', image: CRYSTA, rating: 4.8, description: 'The gold standard for family comfort.', features: ['Plush Leather Seats', 'Rear AC Vents', 'Ample Boot Space'], specs: { seats: '7 SEATS' } },
+    { id: 11, name: 'Maruti Suzuki Dzire', category: 'Economy Cars', image: DZIRE, rating: 4.3, description: 'Compact, efficient, and perfect for city transfers.', features: ['Bluetooth Audio', 'Air Conditioning', 'Generous Legroom'], specs: { seats: '4 SEATS' } },
+    { id: 12, name: 'Honda Amaze', category: 'Economy Cars', image: AMAZE, rating: 4.5, description: 'A smooth, premium sedan experience for small families.', features: ['Touchscreen Infotainment', 'ISOFIX Mounts', 'Power Windows'], specs: { seats: '4 SEATS' } },
+    { id: 13, name: 'Toyota Hiace Commuter (Std)', category: 'Luxury Van', image: COMMUTER_1, rating: 4.7, description: 'Spacious high-roof van ideal for corporate team travel.', features: ['Reclining Seats', 'Mic Connectivity', 'Ambiance Lighting'], specs: { seats: '12 SEATS' } },
+    { id: 14, name: 'Toyota Hiace Commuter (Exec)', category: 'Luxury Van', image: COMMUTER_2, rating: 5.0, description: 'Top-tier luxury travel for high-profile delegations.', features: ['Captain Seats', 'WiFi Hotspot', 'Premium Sound System'], specs: { seats: '9 SEATS' } },
+    { id: 15, name: 'Bharat Benz Mini Coach', category: 'Mini Coach', image: MINI_COACH, rating: 4.6, description: 'The perfect mid-sized solution for tour groups.', features: ['Overhead Luggage Rack', 'PA System', 'Individual Reading Lights'], specs: { seats: '21 SEATS' } },
+    { id: 16, name: 'VOLVO Multi-Axle Bus', category: 'Large Bus', image: LARGE_BUS, rating: 4.9, description: 'Ultimate high-capacity transport for large events.', features: ['Air Suspension', 'On-board Washroom', 'Multiple TV Screens'], specs: { seats: '50 SEATS' } },
   ];
 
   const filteredCars = useMemo(() => {
@@ -202,24 +204,3 @@ const LuxuryCar = () => {
 };
 
 export default LuxuryCar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
